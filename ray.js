@@ -8,6 +8,9 @@ class Ray {
     this.pos = pos;
     this.dir = getDir(pos, this.angle);
   }
+  setAngle(angle) {
+    this.angle = angle;
+  }
   checkIntersection(boundary) {
     const x1 = this.pos.x;
     const y1 = this.pos.y;
@@ -52,7 +55,9 @@ class Ray {
     }
     if (nearestPt) {
       line(this.pos, nearestPt);
+      return shortestDistance;
     }
+    return null;
   }
   show() {
     line(this.pos, this.dir);

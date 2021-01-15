@@ -6,9 +6,19 @@ class Player {
   }
   init() {
     const angle = (Math.PI * 2) / this.raysNum;
-    for (let i = 0; i < this.raysNum; i++) {
+    for (let i = 0; i < 60; i++) {
       const ray = new Ray(this.pos, i * angle);
       this.rays.push(ray);
+    }
+  }
+  rotateUp(angle) {
+    for (const ray of this.rays) {
+      ray.setAngle(ray.angle + angle);
+    }
+  }
+  rotateDown(angle) {
+    for (const ray of this.rays) {
+      ray.setAngle(ray.angle - angle);
     }
   }
   moveTo(pos) {
@@ -16,7 +26,11 @@ class Player {
     for (const ray of this.rays) ray.moveTo(pos);
   }
   cast(boundaries) {
-    for (const ray of this.rays) ray.cast(boundaries);
+    const rects = [];
+    for (const ray of this.rays) { 
+      rects.push(ray.cast(boundaries));
+    }
+    return rects;
   }
   show() {
     for (const ray of this.rays) ray.show();
