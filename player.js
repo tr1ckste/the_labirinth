@@ -15,6 +15,9 @@ class Player {
     this.pos = pos;
     for (const ray of this.rays) ray.moveTo(pos);
   }
+  cast(boundaries) {
+    for (const ray of this.rays) ray.cast(boundaries);
+  }
   show() {
     for (const ray of this.rays) ray.show();
   }
